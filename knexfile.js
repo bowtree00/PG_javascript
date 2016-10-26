@@ -1,20 +1,49 @@
 // Update with your config settings.
 
-module.exports = {
+const settings = require('./settings.json');
+// const env_settings = require ('./.env');
 
+// const client = new pg.Client({
+//   user      : settings.user,
+//   password  : settings.password,
+//   database  : settings.database,
+//   host      : settings.hostname,
+//   port      : settings.port,
+//   ssl       : settings.ssl
+// });
+
+
+module.exports = {
+  // NOTE: I don't have a local DB - need to set one up and add it here
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     connection: {
-      filename: './dev.sqlite3'
+      database  : settings.database,
+      user      : settings.user,
+      password  : settings.password,
+      host      : settings.hostname,
+      port      : settings.port,
+      ssl       : settings.ssl
+      //filename: './dev.sqlite3'
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
     }
   },
 
   staging: {
-    client: 'postgresql',
+    client: 'pg',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      database  : settings.database,
+      user      : settings.user,
+      password  : settings.password,
+      host      : settings.hostname,
+      port      : settings.port,
+      ssl       : settings.ssl
     },
     pool: {
       min: 2,

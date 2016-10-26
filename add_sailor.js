@@ -16,7 +16,6 @@ const PG_CONNECTION_STRING = {
   ssl: true
 }
 
-
 var knex = require('knex')({
   client: 'pg',
   connection: PG_CONNECTION_STRING,
